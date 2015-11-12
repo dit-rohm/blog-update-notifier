@@ -24,7 +24,7 @@ def extract_title(uri_text)
   file_name = uri_text.match(/[^\/]*.html.markdown\Z/)[0].gsub(/-/, '/').gsub(/.markdown/, '')
   file_path = '/blog/' + file_name 
   article_url = 'https://dit-rohm.com' + file_path
-  title_and_url = title + ' ' + article_url
+  title_and_url = title + "\t" + article_url
   puts title_and_url
 end
 
