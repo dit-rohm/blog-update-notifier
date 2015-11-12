@@ -20,8 +20,12 @@ end
 
 def extract_title(uri_text)
   article = api_get( uri_text, {} )
-  title = article.body[/title.*/].gsub(/title: /, '')
-  puts title
+  title = article.body[/title.*/].gsub(/title: /, '').gsub(/\n/, '')
+  file_name = uri_text.match(/[^\/]*.html.markdown\Z/)[0].gsub(/-/, '/').gsub(/.markdown/, '')
+  file_path = '/blog/' + file_name 
+  article_url = 'https://dit-rohm.com' + file_path
+  title_and_url = title + ' ' + article_url
+  puts title_and_url
 end
 
 res = JSON.parse( api_get( "https://api.github.com/repos/dit-rohm/mentor-blog/commits/#{ARGV[0]}", {} ).body )
